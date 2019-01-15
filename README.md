@@ -21,6 +21,7 @@ cd build
 
 ### example
 ```sh
+$ cd build
 $ cat ../test/HelloWorld.c
 #include <stdio.h>
 int main() {
