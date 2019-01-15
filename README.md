@@ -9,7 +9,7 @@ A simple C++ version clang AST visitor modified from [screader](https://github.c
 ```sh
 git clone https://github.com/dyhe83/clang-AST-cursor-traveler.git
 cd clang-AST-cursor-traveler
-sh build
+sh build.sh
 ```
 
 ## How to use
