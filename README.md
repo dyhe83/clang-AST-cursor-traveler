@@ -1,40 +1,50 @@
-screader
-========
+# C++ version clang AST visitor
+A simple C++ version clang AST visitor modified from [screader](https://github.com/shining1984/screader) by [shining1984](https://github.com/shining1984).
 
-The screader is a soure code reading tool based the libclang. It is implemented by the C.
-
-
-
-How to build the scread:
----------------------------------------------------------
+## How to build
 1. You must install the clang on your computer.
    You can follow the doc: http://clang.llvm.org/get_started.html.
    But after you "make", you must "make install".
 
-2. After you install the clang, you can use "clang -v" to check your clang version.
+```sh
+git clone https://github.com/dyhe83/clang-AST-cursor-traveler.git
+cd clang-AST-cursor-traveler
+sh build
+```
 
-3. Use git clone the source code of scread to you computer.
+## How to use
+```sh
+cd build
+./traveler <filename>            The traveler will output all the AST nodes' information.
+./traveler <filename> <keyword>  The traveler will output the AST nodes' matched the keyword.
+```
 
-4. Make directory build under the scread directory.
+### example
+```sh
+$ cat ../test/HelloWorld.c
+#include <stdio.h>
+int main() {
+    printf("Hello world.\n");
+    return 0;
+}
 
-5. Under the build directory, use the cmd:
-   cmake ..
-   make
 
-6. Then you can get the scread under the build directory.
+$ ./traveler ../test/HelloWorld.c printf
 
-
-How to use the scread:
-------------------------------------------------------------
-
-You must come to the directory of the scread.
-
-1. If you want to use the scread to output all the informations of ast nodes:
-   You can use it like that: ./scread xxx.cpp(or xxx.c, xxx.h)
-
-2. If you just want to get the keyword information, you can use it like this:
-   ./scread xxx.cpp keyword
-
-3. We store some testcase under the scread/test/. So, you can use the scread like this:
-   ./scread ../test/Node.h
-   ./scread ../test/HelloWorld.cpp printf
+The AST node kind spelling is: FunctionDecl
+The AST node spelling is: printf
+Start Line: 318 Column: 1 Offset: 9869
+End Line:   318 Column: 57 Offset: 9925
+The AST node kind spelling is: CallExpr
+The AST node spelling is: printf
+Start Line: 4 Column: 5 Offset: 40
+End Line:   4 Column: 29 Offset: 64
+The AST node kind spelling is: UnexposedExpr
+The AST node spelling is: printf
+Start Line: 4 Column: 5 Offset: 40
+End Line:   4 Column: 11 Offset: 46
+The AST node kind spelling is: DeclRefExpr
+The AST node spelling is: printf
+Start Line: 4 Column: 5 Offset: 40
+End Line:   4 Column: 11 Offset: 46
+```
