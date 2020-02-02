@@ -1,16 +1,22 @@
 # C++ version clang AST visitor
-A simple C++ version clang AST visitor modified from [screader](https://github.com/shining1984/screader) by [shining1984](https://github.com/shining1984).
+A simple C++ version clang AST visitor modified from [screader] (author: [shining1984]).
+
+[screader]: https://github.com/shining1984/screader
+[shining1984]: https://github.com/shining1984
 
 ## How to build
-1. You must install the clang on your computer.
-   You can follow the doc: http://clang.llvm.org/get_started.html.
-   But after you "make", you must "make install".
+1. `Clang` installation is necessary.
+   1. You can follow [Clang official document] to install `Clang` step by step.  
+   2. After successfully build `Clang`, you must do `make install` command to install.
 
+2. Then you can try `clang-AST-cursor-traveler` by following command.
 ```sh
-git clone https://github.com/dyhe83/clang-AST-cursor-traveler.git
+git clone https://github.com/dyhe83/clang-AST-cursor-traveler.git --depth=1
 cd clang-AST-cursor-traveler
 sh build.sh
 ```
+
+[Clang official document]: http://clang.llvm.org/get_started.html
 
 ## How to use
 ```sh
