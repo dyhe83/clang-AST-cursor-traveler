@@ -6,10 +6,10 @@ A simple C++ version clang AST visitor modified from [screader] (author: [shinin
 
 ## How to build
 1. `Clang` installation is necessary.
-   1. You can follow [Clang official document] to install `Clang` step by step.  
-   2. After successfully build `Clang`, you must do `make install` command to install.
+    1. You can follow [Clang official document] to install `Clang` step by step.  
+    2. After successfully build `Clang`, you must do `make install` to install.
 
-2. Then you can try `clang-AST-cursor-traveler` by following command.
+2. And then you can build `clang-AST-cursor-traveler`.
 ```sh
 git clone https://github.com/dyhe83/clang-AST-cursor-traveler.git --depth=1
 cd clang-AST-cursor-traveler
@@ -25,7 +25,7 @@ cd build
 ./traveler <filename> <keyword>  The traveler will output the AST nodes' matched the keyword.
 ```
 
-### example
+### Example
 ```sh
 $ cd build
 $ cat ../test/HelloWorld.c
