@@ -1,0 +1,50 @@
+name: Clang-Tidy Analysis
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  clang-tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-tidy python3-pip
+          pip3 install clang-tidy-html
+
+      - name: Configure project
+        run: |
+          cmake -S . -B build
+
+      - name: Run clang-tidy
+        run: |
+          cd build
+          find ../src ../include ../lib -name '*.cpp' -o -name '*.hpp' | xargs clang-tidy -p . > ../clang-tidy-report.txt || true
+
+      - name: Generate HTML report
+        run: |
+          clang-tidy-html ../clang-tidy-report.txt -o clang-tidy-report.html
+
+      - name: Upload TXT report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clang-tidy-report
+          path: build/clang-tidy-report.txt
+
+      - name: Upload HTML report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clang-tidy-report
+          path: build/clang-tidy-report.html
+
+      - name: HTML Preview
+        uses: peter-evans/html-preview-action@v1
+        with:
+          html-path: build/clang-tidy-report.html
