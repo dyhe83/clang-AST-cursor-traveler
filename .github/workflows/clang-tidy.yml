@@ -37,13 +37,13 @@ jobs:
       - name: Upload TXT report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: clang-tidy-report
+          name: clang-tidy-report.txt
           path: build/clang-tidy-report.txt
 
       - name: Upload HTML report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: clang-tidy-report
+          name: clang-tidy-report.html
           path: build/clang-tidy-report.html
 
       - name: HTML Preview
