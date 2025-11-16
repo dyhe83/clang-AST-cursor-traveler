@@ -45,6 +45,8 @@ jobs:
           path: build/clang-tidy-report.html
 
       - name: HTML Preview
-        uses: peter-evans/html-preview-action@v1
+        id: html_preview
+        uses: pavi2410/html-preview-action@v4
         with:
-          html-path: build/clang-tidy-report.html
+          html_file: build/clang-tidy-report.html
+          job_summary: true
