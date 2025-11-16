@@ -20,15 +20,18 @@ jobs:
 
           pip3 install clang-html
 
-      - name: Configure project
+      - name: Configure project (generate compile_commands)
         run: |
           export CC=clang
           export CXX=clang++
-          ./build.sh
+          cmake -S . -B build -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          cmake --build build -- -j2
 
       - name: Run clang-tidy
         run: |
-          find src include lib -name '*.cpp' -o -name '*.hpp' | xargs clang-tidy -p . > build/clang-tidy-report.txt || true
+          # Use helper script that extracts compile flags from compile_commands.json
+          chmod +x scripts/run-clang-tidy.sh
+          ./scripts/run-clang-tidy.sh build
 
       - name: Generate HTML report
         run: |
@@ -45,10 +48,3 @@ jobs:
         with:
           name: clang-tidy-report.html
           path: build/clang-tidy-report.html
-
-      - name: HTML Preview
-        id: html_preview
-        uses: pavi2410/html-preview-action@v4
-        with:
-          html_file: build/clang-tidy-report.html
-          job_summary: true
