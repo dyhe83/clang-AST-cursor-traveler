@@ -14,7 +14,10 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang clang-tidy python3-pip
+          sudo apt-get install -y \
+            clang clang-tidy libclang-dev cmake \
+            python3-pip
+
           pip3 install clang-html
 
       - name: Configure project
