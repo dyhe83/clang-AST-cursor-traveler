@@ -28,11 +28,11 @@ jobs:
 
       - name: Run clang-tidy
         run: |
-          find src include lib -name '*.cpp' -o -name '*.hpp' | xargs clang-tidy -p . > clang-tidy-report.txt || true
+          find src include lib -name '*.cpp' -o -name '*.hpp' | xargs clang-tidy -p . > build/clang-tidy-report.txt || true
 
       - name: Generate HTML report
         run: |
-          clang-tidy-html clang-tidy-report.txt -o clang-tidy-report.html
+          clang-tidy-html build/clang-tidy-report.txt -o build/clang-tidy-report.html
 
       - name: Upload TXT report artifact
         uses: actions/upload-artifact@v4
