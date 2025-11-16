@@ -14,11 +14,13 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang-tidy python3-pip
+          sudo apt-get install -y clang clang-tidy python3-pip
           pip3 install clang-html
 
       - name: Configure project
         run: |
+          export CC=clang
+          export CXX=clang++
           ./build.sh
 
       - name: Run clang-tidy
