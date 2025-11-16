@@ -19,7 +19,7 @@ jobs:
 
       - name: Configure project
         run: |
-          cmake -S . -B build
+          ./build.sh
 
       - name: Run clang-tidy
         run: |
